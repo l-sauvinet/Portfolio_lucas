@@ -1,14 +1,18 @@
 <script setup>
+import Home from './components/Home.vue'
+import Veille from "./components/Veille.vue";
 import Header from "./components/Header.vue";
-import Description from "./components/Description.vue";
 import Project from "./components/Project.vue";
 import Synthese from "./components/Synthese.vue";
-import Veille from "./components/Veille.vue";
+import Description from "./components/Description.vue";
+import CustomCursor from "./components/CustomCursor.vue";
 </script>
 
 <template>
   <div id="app">
+    <CustomCursor />
     <Header />
+    <Home/>
     <Description />
     <Project />
     <Synthese />
@@ -17,6 +21,10 @@ import Veille from "./components/Veille.vue";
 </template>
 
 <style>
+* {
+  cursor: none !important;
+}
+
 body {
   margin: 0;
   padding: 0;
