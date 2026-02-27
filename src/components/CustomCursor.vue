@@ -85,7 +85,7 @@ onUnmounted(() => {
     font-family: 'Fira Code', monospace;
     font-size: 18px;
     font-weight: 700;
-    color: #0C3808;
+    color: #298421;
     line-height: 1;
     transform: rotate(40deg);
     transition: color 0.2s ease, font-size 0.2s ease;

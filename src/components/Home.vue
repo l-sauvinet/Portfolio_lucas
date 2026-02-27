@@ -39,26 +39,30 @@ export default {
     font-size: 45px;
     color: #0C3808;
     border-bottom: 1px solid #0C3808;
+    font-family: 'KoHo', sans-serif;
 }
 
 .home-info h2 .tag {
     color: #0C3808;
     font-size: 35px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .home-info p {
     font-size: 20px;
     color: #444;
+    font-family: 'KoHo', sans-serif;
+    font-weight: 500;
 }
 
 .home-info button {
     width: 70%;
     height: 40px;
-    border: 2px solid #298421;
+    border: 2px solid #0C3808;
     border-radius: 5px;
     color: white;
     font-size: 20px;
-    background-color: #298421;
+    background-color: #0C3808;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
     margin-top: 15px;
@@ -66,7 +70,7 @@ export default {
 
 .home-info button:hover {
     background-color: transparent;
-    color: #298421;
+    color: #0C3808;
 }
 
 .home-design {

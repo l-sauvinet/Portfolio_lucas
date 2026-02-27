@@ -23,6 +23,7 @@ import CustomCursor from "./components/CustomCursor.vue";
 <style>
 * {
   cursor: none !important;
+  user-select: none;
 }
 
 body {
