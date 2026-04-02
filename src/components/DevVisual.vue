@@ -17,16 +17,54 @@ import { ref, onMounted, onUnmounted } from 'vue'
 const canvas = ref(null)
 let animationId = null
 
-let angleY = 0
-let angleX = 0
+// Quaternion représentant la rotation courante
+// On évite les angles d'Euler pour ne pas avoir de problème de sens après rotation
+let quat = { w: 1, x: 0, y: 0, z: 0 }
+
 let isDragging = false
 let lastMouseX = 0
 let lastMouseY = 0
-let velX = 0
-let velY = 0
+let velX = 0  // inertie après lâcher (axe Y)
+let velY = 0  // inertie après lâcher (axe X)
 
 const SIZE = 800
 const RADIUS = 300
+
+// Multiplication de quaternions
+function quatMul(a, b) {
+    return {
+        w: a.w*b.w - a.x*b.x - a.y*b.y - a.z*b.z,
+        x: a.w*b.x + a.x*b.w + a.y*b.z - a.z*b.y,
+        y: a.w*b.y - a.x*b.z + a.y*b.w + a.z*b.x,
+        z: a.w*b.z + a.x*b.y - a.y*b.x + a.z*b.w,
+    }
+}
+
+// Créer un quaternion depuis un axe + angle
+function quatFromAxis(ax, ay, az, angle) {
+    const s = Math.sin(angle / 2)
+    return { w: Math.cos(angle / 2), x: ax*s, y: ay*s, z: az*s }
+}
+
+// Normaliser le quaternion pour éviter la dérive
+function quatNorm(q) {
+    const l = Math.sqrt(q.w*q.w + q.x*q.x + q.y*q.y + q.z*q.z)
+    return { w: q.w/l, x: q.x/l, y: q.y/l, z: q.z/l }
+}
+
+// Appliquer la rotation du quaternion à un point 3D
+function quatRotate(q, x, y, z) {
+    // p' = q * p * q^-1
+    const px = q.w*x + q.y*z - q.z*y
+    const py = q.w*y + q.z*x - q.x*z
+    const pz = q.w*z + q.x*y - q.y*x
+    const pw = -q.x*x - q.y*y - q.z*z
+    return {
+        x: pw*(-q.x) + px*q.w + py*(-q.z) - pz*(-q.y),
+        y: pw*(-q.y) - px*(-q.z) + py*q.w + pz*(-q.x),
+        z: pw*(-q.z) + px*(-q.y) - py*(-q.x) + pz*q.w,
+    }
+}
 
 function onMouseDown(e) {
     const rect = canvas.value.getBoundingClientRect()
@@ -47,10 +85,24 @@ function onMouseMove(e) {
     const rect = canvas.value.getBoundingClientRect()
     const mx = (e.clientX - rect.left) * (SIZE / rect.width)
     const my = (e.clientY - rect.top) * (SIZE / rect.height)
-    velX = (mx - lastMouseX) * 0.01
-    velY = (lastMouseY - my) * 0.01
-    angleY += velX
-    angleX += velY
+
+    const dx = (mx - lastMouseX) * 0.01
+    const dy = (my - lastMouseY) * 0.01
+
+    velX = dx
+    velY = dy
+
+    // Rotation autour de l'axe Y du monde (gauche/droite)
+    if (Math.abs(dx) > 0.0001) {
+        const q = quatFromAxis(0, 1, 0, -dx)
+        quat = quatNorm(quatMul(q, quat))
+    }
+    // Rotation autour de l'axe X du monde (haut/bas)
+    if (Math.abs(dy) > 0.0001) {
+        const q = quatFromAxis(1, 0, 0, -dy)
+        quat = quatNorm(quatMul(q, quat))
+    }
+
     lastMouseX = mx
     lastMouseY = my
 }
@@ -73,8 +125,8 @@ onMounted(() => {
     const cx = SIZE / 2
     const cy = SIZE / 2
 
-    const techs = ['Vue.js', 'Symfony', 'SQL', 'HTML', 'CSS', 'JS', 'Git', 'C#', 'MySQL', 'React']
-    const total = 80
+    const techs = ['Vue.js', 'Symfony', 'SQL', 'HTML', 'CSS', 'JS', 'Git', 'C#', 'MySQL', 'React', 'TypeScript', 'Docker', 'Linux', 'PHP', 'Python', 'Node.js', 'MongoDB', 'Tailwind', 'Figma', 'AWS']
+    const total = 120
     const golden = Math.PI * (3 - Math.sqrt(5))
     const points = []
 
@@ -96,6 +148,16 @@ onMounted(() => {
         { phi: 2.0,  theta: 5.8 },
         { phi: 2.6,  theta: 2.0 },
         { phi: 1.8,  theta: 1.0 },
+        { phi: 0.6,  theta: 2.8 },
+        { phi: 1.1,  theta: 3.5 },
+        { phi: 1.7,  theta: 0.5 },
+        { phi: 2.3,  theta: 4.5 },
+        { phi: 2.9,  theta: 1.5 },
+        { phi: 0.9,  theta: 6.0 },
+        { phi: 1.4,  theta: 1.8 },
+        { phi: 2.1,  theta: 3.2 },
+        { phi: 2.5,  theta: 5.2 },
+        { phi: 1.6,  theta: 4.8 },
     ]
     techPositions.forEach(({ phi, theta }, i) => {
         points.push({
@@ -107,21 +169,12 @@ onMounted(() => {
     })
 
     function project(x, y, z) {
-        const cosX = Math.cos(angleX)
-        const sinX = Math.sin(angleX)
-        let ry = y * cosX - z * sinX
-        let rz = y * sinX + z * cosX
-
-        const cosY = Math.cos(angleY)
-        const sinY = Math.sin(angleY)
-        let rx = x * cosY + rz * sinY
-        let fz = -x * sinY + rz * cosY
-
-        const scale = (fz + 2) / 3
+        const r = quatRotate(quat, x, y, z)
+        const scale = (r.z + 2) / 3
         return {
-            x: cx + rx * RADIUS * scale,
-            y: cy + ry * RADIUS * scale,
-            z: fz, scale,
+            x: cx + r.x * RADIUS * scale,
+            y: cy + r.y * RADIUS * scale,
+            z: r.z, scale,
             ox: x, oy: y, oz: z
         }
     }
@@ -130,12 +183,24 @@ onMounted(() => {
         ctx.clearRect(0, 0, SIZE, SIZE)
 
         if (!isDragging) {
-            angleY += velX
-            angleX += velY
-            velX *= 0.95
-            velY *= 0.95
-            if (Math.abs(velX) < 0.0005 && Math.abs(velY) < 0.0005) {
-                angleY += 0.005
+            // Inertie — continue dans la direction du dernier drag
+            if (Math.abs(velX) > 0.0001 || Math.abs(velY) > 0.0001) {
+                if (Math.abs(velX) > 0.00001) {
+                    const q = quatFromAxis(0, 1, 0, velX)
+                    quat = quatNorm(quatMul(q, quat))
+                }
+                if (Math.abs(velY) > 0.00001) {
+                    const q = quatFromAxis(1, 0, 0, -velY)
+                    quat = quatNorm(quatMul(q, quat))
+                }
+                velX *= 0.97
+                velY *= 0.97
+            } else {
+                velX = 0
+                velY = 0
+                // Rotation auto une fois l'inertie épuisée
+                const q = quatFromAxis(0, 1, 0, 0.005)
+                quat = quatNorm(quatMul(q, quat))
             }
         }
 
@@ -165,7 +230,7 @@ onMounted(() => {
             if (p.tech) {
                 const textAlpha = (p.z + 1) / 2
                 if (textAlpha > 0.3) {
-                    ctx.font = `600 ${Math.round(p.scale * 13)}px 'Fira Code', monospace`
+                    ctx.font = `600 ${Math.round(p.scale * 18)}px 'Fira Code', monospace`
                     ctx.fillStyle = `rgba(12,56,8,${textAlpha * 0.85})`
                     ctx.textAlign = 'center'
                     ctx.textBaseline = 'middle'

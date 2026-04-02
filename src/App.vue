@@ -5,12 +5,10 @@ import Header from "./components/Header.vue";
 import Project from "./components/Project.vue";
 import Synthese from "./components/Synthese.vue";
 import Description from "./components/Description.vue";
-import CustomCursor from "./components/CustomCursor.vue";
 </script>
 
 <template>
   <div id="app">
-    <CustomCursor />
     <Header />
     <Home/>
     <Description />
@@ -22,7 +20,6 @@ import CustomCursor from "./components/CustomCursor.vue";
 
 <style>
 * {
-  cursor: none !important;
   user-select: none;
 }
 
