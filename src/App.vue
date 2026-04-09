@@ -1,20 +1,11 @@
 <script setup>
-import Home from './components/Home.vue'
-import Veille from "./components/Veille.vue";
-import Header from "./components/Header.vue";
-import Project from "./components/Project.vue";
-import Synthese from "./components/Synthese.vue";
-import Description from "./components/Description.vue";
+import Header from './components/Header.vue'
 </script>
 
 <template>
   <div id="app">
     <Header />
-    <Home/>
-    <Description />
-    <Project />
-    <Synthese />
-    <Veille />
+    <RouterView />
   </div>
 </template>
 
@@ -29,7 +20,15 @@ body {
   background-color: #f0f0f0;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  scrollbar-width: none;
+}
+
 #app {
-   font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 </style>

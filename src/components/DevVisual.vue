@@ -94,7 +94,7 @@ function onMouseMove(e) {
 
     // Rotation autour de l'axe Y du monde (gauche/droite)
     if (Math.abs(dx) > 0.0001) {
-        const q = quatFromAxis(0, 1, 0, -dx)
+        const q = quatFromAxis(0, 1, 0, dx)
         quat = quatNorm(quatMul(q, quat))
     }
     // Rotation autour de l'axe X du monde (haut/bas)

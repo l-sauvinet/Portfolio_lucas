@@ -1,5 +1,5 @@
 <template>
-    <section class="project-section" id="projects">
+    <section class="project-section" id="projet">
 
         <div class="section-header">
             <span class="section-tag">&lt;section /&gt;</span>
@@ -88,14 +88,15 @@ const projects = [
             'Elle permet de suivre les contrats, les interventions et les informations clients depuis une interface simple et intuitive, développée avec Vue.js et Firebase.',
         ],
         techs: ['Vue.js', 'JavaScript', 'Firebase', 'EmailJS'],
-        github: 'https://github.com',
+        github: 'https://github.com/l-sauvinet/Axiora',
         demo: null,
     },
     {
         id: 2,
         tag: '<projet />',
         title: 'Spamrock',
-        image: '/assets/tache-img.jpg',
+        image: '/assets/spamRock-img1.png',
+        imageDesc: '/assets/spamRock-img2.svg',
         shortDesc: 'Application web développée en entreprise pour la gestion de mail et la securisation de mail.',
         description: [
             'Spamrock est une application web développée au sein de Thomyris, dédiée à la gestion et à la sécurisation des flux de messagerie.',
@@ -109,7 +110,8 @@ const projects = [
         id: 3,
         tag: '<projet />',
         title: 'ORVIS',
-        image: '/assets/BTS-img.jpg',
+        image: '/assets/ORVIS-img1.svg',
+        imageDesc: '/assets/ORVIS-img2.svg',
         shortDesc: 'Mon assistant IA personnel.',
         description: [
             'ORVIS est mon assistant IA personnel, conçu pour centraliser mes outils du quotidien et automatiser certaines tâches récurrentes.',
@@ -123,7 +125,8 @@ const projects = [
         id: 4,
         tag: '<projet />',
         title: 'Classyn (student website)',
-        image: '/assets/BTS-img.jpg',
+        image: '/assets/Classyn-web-img1.svg',
+        imageDesc: '/assets/Classyn-web-img2.svg',
         shortDesc: 'Site web de visualisation des abscences et retards pour les étudiants.',
         description: [
             'Classyn est un site web permettant aux étudiants de consulter en temps réel leurs absences et retards enregistrés par leurs formateurs.',

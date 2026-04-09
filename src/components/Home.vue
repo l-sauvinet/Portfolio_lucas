@@ -1,5 +1,5 @@
 <template>
-    <div class="home-container">
+    <div class="home-container" id="accueil">
         <div class="home-info">
             <h2>Sauvinet Lucas <span class="tag">&lt;/&gt;</span></h2>
             <p>École Saint-Michel - Entreprise Thomyris</p>
