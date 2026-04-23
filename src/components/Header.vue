@@ -23,6 +23,7 @@ import { useRouter, useRoute } from 'vue-router'
 const router = useRouter()
 const route = useRoute()
 
+// Scroll vers le haut — navigue vers '/' si on n'y est pas déjà
 function scrollTop() {
   if (route.path !== '/') {
     router.push('/').then(() => window.scrollTo({ top: 0, behavior: 'smooth' }))
@@ -31,6 +32,8 @@ function scrollTop() {
   }
 }
 
+// Scroll vers une section par id — si on est sur une autre page, navigue d'abord
+// Le setTimeout(100) laisse le temps au DOM de monter avant de chercher l'élément
 function scrollTo(id) {
   if (route.path !== '/') {
     router.push('/').then(() => {

@@ -212,10 +212,12 @@ import { ref } from 'vue'
 
 const totalSlides = 5
 const currentSlide = ref(0)
+// 'direction' détermine quelle classe CSS de transition appliquer (slide-left ou slide-right)
 const direction = ref('next')
 const hoverPrev = ref(false)
 const hoverNext = ref(false)
 
+// Labels affichés en hint au survol des boutons de navigation
 const slideLabels = ['Moi', 'Entreprise', 'Alternance', 'Formation', 'Spécialité']
 
 function next() {
@@ -224,12 +226,15 @@ function next() {
         currentSlide.value++
     }
 }
+
 function prev() {
     if (currentSlide.value > 0) {
         direction.value = 'prev'
         currentSlide.value--
     }
 }
+
+// Utilisé par les dots — détermine la direction selon si on avance ou recule
 function goTo(index) {
     direction.value = index > currentSlide.value ? 'next' : 'prev'
     currentSlide.value = index

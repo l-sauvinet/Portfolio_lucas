@@ -9,7 +9,7 @@
 
     <div class="page-content">
 
-      <!-- LEFT : Tableau de synthèse -->
+      <!-- Colonne gauche : image du tableau de synthèse Excel -->
       <aside class="synthese-panel">
         <div class="panel-header">
           <span class="section-tag">&lt;synthèse /&gt;</span>
@@ -18,7 +18,7 @@
         <div class="synthese-placeholder"></div>
       </aside>
 
-      <!-- RIGHT : Timeline parcours -->
+      <!-- Colonne droite : timeline avec scolaire à gauche et pro à droite de l'axe -->
       <div class="timeline-area">
 
         <div class="tl-col-headers">
@@ -257,7 +257,7 @@
   z-index: 1;
 }
 
-/* Dots */
+/* Dots — normal = scolaire seul · pro = pro seul · dual = les deux côtés actifs */
 .tl-dot {
   width: 13px;
   height: 13px;

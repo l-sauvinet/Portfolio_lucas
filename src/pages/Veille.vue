@@ -37,6 +37,7 @@
 </template>
 
 <script setup>
+// Données de veille : chaque topic a un label, un tag Fira Code et un article associé
 const topics = [
   {
     tag: '< vue.js />',

@@ -65,6 +65,8 @@ const form = reactive({
   message: '',
 })
 
+// Construit un lien mailto: avec les champs du formulaire pré-remplis
+// et ouvre le client mail de l'utilisateur
 function sendMail() {
   const to = 'lucas.sauvinet@gmail.com'
   const subject = encodeURIComponent(form.subject)

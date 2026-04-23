@@ -1,4 +1,5 @@
 <template>
+  <!-- Page d'accueil : hero + carousel de description + liste des projets -->
   <div>
     <Home />
     <Description />

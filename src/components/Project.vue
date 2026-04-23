@@ -65,6 +65,7 @@ import { ref } from 'vue'
 
 const selected = ref(null)
 
+// Bloque le scroll du body pendant qu'une modale est ouverte
 function openModal(project) {
     selected.value = project
     document.body.style.overflow = 'hidden'

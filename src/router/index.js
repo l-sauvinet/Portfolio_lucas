@@ -14,5 +14,6 @@ const routes = [
 export default createRouter({
   history: createWebHistory(),
   routes,
+  // Remet le scroll en haut à chaque changement de page
   scrollBehavior: () => ({ top: 0 }),
 })

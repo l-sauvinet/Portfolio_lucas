@@ -3,6 +3,7 @@ import Header from './components/Header.vue'
 </script>
 
 <template>
+  <!-- Header persistant sur toutes les pages, RouterView affiche la page active -->
   <div id="app">
     <Header />
     <RouterView />
@@ -20,13 +21,9 @@ body {
   background-color: #f0f0f0;
 }
 
-::-webkit-scrollbar {
-  display: none;
-}
-
-html {
-  scrollbar-width: none;
-}
+/* Masque la scrollbar sur tous les navigateurs */
+::-webkit-scrollbar { display: none; }
+html { scrollbar-width: none; }
 
 #app {
   font-family: 'Montserrat', sans-serif;
