@@ -9,7 +9,7 @@
         <a @click.prevent="scrollTop" href="#accueil">Accueil</a>
         <a @click.prevent="scrollTo('description')" href="#description">Description</a>
         <a @click.prevent="scrollTo('projet')" href="#projet">Projet</a>
-        <RouterLink to="/parcours">Parcours</RouterLink>
+        <RouterLink to="/synthese">Synthese</RouterLink>
         <RouterLink to="/veille">Veille</RouterLink>
         <RouterLink to="/contact">Contact</RouterLink>
       </nav>

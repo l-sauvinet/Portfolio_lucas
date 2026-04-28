@@ -1,9 +1,9 @@
 <template>
-  <div class="parcours-page">
+  <div class="synthese-page">
 
     <div class="section-header">
-      <span class="section-tag">&lt;parcours /&gt;</span>
-      <h1>Parcours</h1>
+      <span class="section-tag">&lt;synthèse /&gt;</span>
+      <h1>Synthèse</h1>
       <div class="section-line"></div>
     </div>
 
@@ -12,7 +12,7 @@
       <!-- Colonne gauche : image du tableau de synthèse Excel -->
       <aside class="synthese-panel">
         <div class="panel-header">
-          <span class="section-tag">&lt;synthèse /&gt;</span>
+          <span class="section-tag">&lt;tableau /&gt;</span>
           <h2>Tableau de synthèse</h2>
         </div>
         <div class="synthese-placeholder"></div>
@@ -117,7 +117,7 @@
 
 <style scoped>
 /* === PAGE === */
-.parcours-page {
+.synthese-page {
   padding: 60px 80px 100px;
   display: flex;
   flex-direction: column;

@@ -4,7 +4,10 @@
             <h2>Sauvinet Lucas <span class="tag">&lt;/&gt;</span></h2>
             <p>École Saint-Michel - Entreprise Thomyris</p>
             <p>Étudiant en BTS SIO – option SLAM</p>
-            <button>Télécharger mon CV</button>
+            <div class="home-buttons">
+                <a href="/assets/CV-Sauvinet lucas.pdf" target="_blank" class="home-btn">Télécharger mon CV</a>
+                <a href="/assets/SAUVINET LUCAS - CERFA.pdf" target="_blank" class="home-btn btn-outline">Télécharger mon CERFA</a>
+            </div>
         </div>
         <div class="home-design">
             <DevVisual />
@@ -55,22 +58,42 @@ export default {
     font-weight: 500;
 }
 
-.home-info button {
-    width: 70%;
+.home-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.home-btn {
+    flex: 1;
     height: 40px;
     border: 2px solid #0C3808;
     border-radius: 5px;
     color: white;
-    font-size: 20px;
+    font-size: 16px;
     background-color: #0C3808;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
-    margin-top: 15px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.home-info button:hover {
+.home-btn:hover {
     background-color: transparent;
     color: #0C3808;
+}
+
+.home-btn.btn-outline {
+    background-color: transparent;
+    color: #0C3808;
+}
+
+.home-btn.btn-outline:hover {
+    background-color: #0C3808;
+    color: white;
 }
 
 .home-design {

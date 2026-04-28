@@ -52,6 +52,9 @@
                                 Voir la démo
                             </a>
                         </div>
+                        <p v-if="selected.enterprise" class="enterprise-notice">
+                            Projet d'entreprise — code source non accessible
+                        </p>
                     </div>
                 </div>
             </div>
@@ -97,7 +100,7 @@ const projects = [
         tag: '<projet />',
         title: 'Spamrock',
         image: '/assets/spamRock-img1.png',
-        imageDesc: '/assets/spamRock-img2.svg',
+        imageDesc: '/assets/spamRock-img2.png',
         shortDesc: 'Application web développée en entreprise pour la gestion de mail et la securisation de mail.',
         description: [
             'Spamrock est une application web développée au sein de Thomyris, dédiée à la gestion et à la sécurisation des flux de messagerie.',
@@ -106,6 +109,7 @@ const projects = [
         techs: ['Vue.js', 'Laravel', 'Docker', 'MySQL', 'GitFlow'],
         github: null,
         demo: null,
+        enterprise: true,
     },
     {
         id: 3,
@@ -119,7 +123,7 @@ const projects = [
             'Il repose sur un modèle llama3 exécuté localement, avec une interface mobile développée en Flutter, une logique back-end en C# et des scripts Python pour le traitement des données.',
         ],
         techs: ['C#', 'Python', 'Flutter', 'llama3'],
-        github: 'https://github.com',
+        github: 'https://github.com/l-sauvinet/ORVIS',
         demo: null,
     },
     {
@@ -134,49 +138,52 @@ const projects = [
             'L\'interface est développée en Vue.js, communique avec une API REST et s\'appuie sur une base de données MySQL pour stocker les données de présence.',
         ],
         techs: ['Vue.js', 'JavaScript', 'API', 'MySQL'],
-        github: 'https://github.com',
+        github: 'https://github.com/l-sauvinet/Website_VUE',
         demo: null,
     },
     {
         id: 5,
         tag: '<projet />',
         title: 'Classyn (teacher mobile app)',
-        image: '/assets/BTS-img.jpg',
+        image: '/assets/Classyn-web-img1.svg',
         shortDesc: 'Application mobile de reservation de salle de cours, ajout de retard et abscences pour les formateurs.',
         description: [
             'Classyn Teacher est l\'application mobile complémentaire du site étudiant, destinée aux formateurs.',
             'Développée en C#, elle permet de réserver des salles, saisir les absences et retards, et se synchronise en temps réel avec la base de données MySQL via PHP.',
         ],
         techs: ['C#', 'CSS', 'JavaScript', 'PHP', 'MySQL'],
-        github: 'https://github.com',
+        github: 'https://github.com/l-sauvinet/App_mobile',
         demo: null,
     },
     {
         id: 6,
         tag: '<projet />',
         title: 'Kalydian',
-        image: '/assets/BTS-img.jpg',
+        image: '/assets/Kalydian-img1.svg',
+        imageDesc: '/assets/Kalydian-img2.png',
         shortDesc: 'Application web développée en entreprise pour la gestion de mot de passe sécurisée.',
         description: [
             'Kalydian est un gestionnaire de mots de passe développé en entreprise chez Thomyris, conçu pour répondre aux exigences de sécurité des environnements professionnels.',
             'L\'application chiffre les données côté serveur et propose une interface Vue.js fluide, avec une API Symfony et une base de données MySQL conteneurisée sous Docker.',
         ],
         techs: ['Vue.js', 'Symfony', 'Docker', 'MySQL', 'GitFlow'],
-        github: 'https://github.com',
+        github: null,
         demo: null,
+        enterprise: true,
     },
     {
         id: 7,
         tag: '<projet />',
         title: 'Portfolio',
-        image: '/assets/BTS-img.jpg',
+        image: '/assets/portfolio-img1.svg',
+        imageDesc: '/assets/portfolio-img2.png',
         shortDesc: 'Portfolio personnel développé en Vue.js pour présenter mon parcours et mes projets réalisés durant ma formation en BTS SIO option SLAM.',
         description: [
             'Ce portfolio a été conçu pour présenter mon parcours, mes compétences et l\'ensemble des projets réalisés durant ma formation en BTS SIO option SLAM.',
             'Il est développé en Vue.js avec un design épuré et une identité visuelle cohérente. La sphère interactive de la page d\'accueil est entièrement codée en Canvas 2D avec des quaternions pour les rotations.',
         ],
         techs: ['Vue.js', 'JavaScript', 'Canvas 2D'],
-        github: 'https://github.com',
+        github: 'https://github.com/l-sauvinet/Portfolio_lucas',
         demo: null,
     },
 ]
@@ -457,5 +464,18 @@ const projects = [
 .modal-btn-outline:hover {
     background: #0C3808;
     color: #fff;
+}
+
+.enterprise-notice {
+    font-size: 13px;
+    font-family: 'Fira Code', monospace;
+    color: #777;
+    background: rgba(12, 56, 8, 0.05);
+    border: 1px solid rgba(12, 56, 8, 0.15);
+    border-radius: 8px;
+    padding: 8px 14px;
+    margin: 0;
+    display: inline-block;
+    align-self: flex-start;
 }
 </style>
