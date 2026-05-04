@@ -15,7 +15,18 @@
           <span class="section-tag">&lt;tableau /&gt;</span>
           <h2>Tableau de synthèse</h2>
         </div>
-        <div class="synthese-placeholder"></div>
+        <embed
+          src="/assets/tableau%20de%20synthese%20-%20Sauvinet%20lucas.pdf"
+          type="application/pdf"
+          class="synthese-pdf"
+        />
+        <a
+          href="/assets/tableau%20de%20synthese%20-%20Sauvinet%20lucas.pdf"
+          download="tableau de synthese - Sauvinet lucas.pdf"
+          class="download-btn"
+        >
+          Télécharger le tableau de synthèse
+        </a>
       </aside>
 
       <!-- Colonne droite : timeline avec scolaire à gauche et pro à droite de l'axe -->
@@ -183,12 +194,33 @@
   margin: 0;
 }
 
-.synthese-placeholder {
+.synthese-pdf {
   width: 100%;
-  height: 420px;
-  background: #fff;
+  height: 1300px;
   border-radius: 10px;
   border: 1px solid rgba(12, 56, 8, 0.12);
+}
+
+.download-btn {
+  display: inline-block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 0;
+  text-align: center;
+  border: 2px solid #0C3808;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 15px;
+  font-family: 'KoHo', sans-serif;
+  background-color: #0C3808;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.download-btn:hover {
+  background-color: transparent;
+  color: #0C3808;
 }
 
 /* ===========================
